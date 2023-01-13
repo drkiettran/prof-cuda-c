@@ -7,8 +7,8 @@ C_APPS=sumArraysOnHost
 all: ${C_APPS} ${CU_APPS}
 
 %: %.cu
-	nvcc -O2 -arch=sm_20 -o $@ $<
+	nvcc -g -G -o $@ $<
 %: %.c
-	gcc -O2 -std=c99 -o $@ $<
+	gcc -g -o $@ $<
 clean:
 	rm -f ${CU_APPS} ${C_APPS}

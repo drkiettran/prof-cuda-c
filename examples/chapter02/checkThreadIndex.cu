@@ -81,6 +81,8 @@ int main(int argc, char **argv)
     dim3 block(4, 2);
     dim3 grid((nx + block.x - 1) / block.x, (ny + block.y - 1) / block.y);
 
+    printf("block: %d, %d, %d\n", block.x, block.y, block.z);
+    printf("grid: %d, %d, %d\n", grid.x, grid.y, grid.z);
     // invoke the kernel
     printThreadIndex<<<grid, block>>>(d_MatA, nx, ny);
     CHECK(cudaGetLastError());
