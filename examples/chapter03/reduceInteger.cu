@@ -526,7 +526,7 @@ int main(int argc, char **argv)
 
     for (int i = 0; i < grid.x; i++) gpu_sum += h_odata[i];
 
-    printf("gpu Neighbored2 elapsed %f sec gpu_sum: %d <<<grid %d block "
+    printf("gpu NeighboredLess elapsed %f sec gpu_sum: %d <<<grid %d block "
            "%d>>>\n", iElaps, gpu_sum, grid.x, block.x);
 
     // kernel 3: reduceInterleaved
