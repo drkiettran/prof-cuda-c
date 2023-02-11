@@ -16,7 +16,7 @@ int main(int argc, char **argv)
     CHECK(cudaSetDevice(dev));
 
     // memory size
-    unsigned int isize = 1 << 22;
+    unsigned int isize = 1 << 8; // 22;
     unsigned int nbytes = isize * sizeof(float);
 
     // get device information

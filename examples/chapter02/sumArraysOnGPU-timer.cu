@@ -63,7 +63,14 @@ __global__ void sumArraysOnGPU(float *A, float *B, float *C, const int N)
 
 int main(int argc, char **argv)
 {
-    printf("%s Starting...\n", argv[0]);
+
+    int block_x = 512;
+
+    if (argc > 1) {
+        block_x = atoi (argv[1]);
+    }
+
+    printf("%s Starting... with block.x = %d\n", argv[0], block_x);
 
     // set up device
     int dev = 0;
@@ -114,7 +121,7 @@ int main(int argc, char **argv)
     CHECK(cudaMemcpy(d_C, gpuRef, nBytes, cudaMemcpyHostToDevice));
 
     // invoke kernel at host side
-    int iLen = 512;
+    int iLen = block_x; // 512;
     dim3 block (iLen);
     dim3 grid  ((nElem + block.x - 1) / block.x);
 

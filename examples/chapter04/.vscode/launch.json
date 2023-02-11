@@ -1,0 +1,40 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [ 
+        // {
+        //     "name": "CUDA C++: Launch",
+        //     "type": "cuda-gdb",
+        //     "request": "launch",
+        //     "program": "${workspaceFolder}/readSegment"
+        // },
+        // {
+        //     "name": "CUDA C++: Launch",
+        //     "type": "cuda-gdb",
+        //     "request": "launch",
+        //     "program": "${workspaceFolder}/pinMemTransfer"
+        // },
+        {
+            "name": "CUDA C++: Launch",
+            "type": "cuda-gdb",
+            "request": "launch",
+            "program": "${workspaceFolder}/memTransfer"
+
+        },
+        {
+            "name": "CUDA C++: Launch",
+            "type": "cuda-gdb",
+            "request": "launch",
+            "program": "${workspaceFolder}/globalVariable"
+        },
+
+        {
+            "name": "CUDA C++: Attach",
+            "type": "cuda-gdb",
+            "request": "attach",
+            "program": "${workspaceFolder}/globalVariable"
+        }
+    ]
+}
