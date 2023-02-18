@@ -94,8 +94,8 @@ int main(int argc, char **argv)
     CHECK(cudaSetDevice(dev));
 
     // set up data size of matrix
-    int nx = 1 << 14;
-    int ny = 1 << 14;
+    int nx = 1 << 4;
+    int ny = 1 << 4;
 
     int nxy = nx * ny;
     int nBytes = nxy * sizeof(float);
@@ -135,7 +135,7 @@ int main(int argc, char **argv)
     CHECK(cudaMemcpy(d_MatB, h_B, nBytes, cudaMemcpyHostToDevice));
 
     // invoke kernel at host side
-    int dimx = 128;
+    int dimx = 16; //128;
     dim3 block(dimx, 1);
     dim3 grid((nx + block.x - 1) / block.x, 1);
 
