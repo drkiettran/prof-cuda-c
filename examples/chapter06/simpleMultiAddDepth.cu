@@ -69,6 +69,8 @@ void checkResult(float *hostRef, float *gpuRef, const int N)
 int main(int argc, char **argv)
 {
     printf("> %s Starting...\n", argv[0]);
+    int n_streams = NSTREAM;
+    if (argc > 1) n_streams = atoi(argv[1]);
 
     int dev = 0;
     cudaDeviceProp deviceProp;
@@ -100,7 +102,7 @@ int main(int argc, char **argv)
     setenv (iname, "1", 1);
     char *ivalue =  getenv (iname);
     printf ("> %s = %s\n", iname, ivalue);
-    printf ("> with streams = %d\n", NSTREAM);
+    printf ("> with streams = %d\n", n_streams);
 
     // set up data size of vectors
     int nElem = 1 << 18;
@@ -175,13 +177,13 @@ int main(int argc, char **argv)
            itotal, (nBytes * 2e-6) / itotal);
 
     // grid parallel operation
-    int iElem = nElem / NSTREAM;
+    int iElem = nElem / n_streams;
     size_t iBytes = iElem * sizeof(float);
     grid.x = (iElem + block.x - 1) / block.x;
 
-    cudaStream_t stream[NSTREAM];
+    cudaStream_t stream[n_streams];
 
-    for (int i = 0; i < NSTREAM; ++i)
+    for (int i = 0; i < n_streams; ++i)
     {
         CHECK(cudaStreamCreate(&stream[i]));
     }
@@ -189,7 +191,7 @@ int main(int argc, char **argv)
     CHECK(cudaEventRecord(start, 0));
 
     // initiate all work on the device asynchronously in depth-first order
-    for (int i = 0; i < NSTREAM; ++i)
+    for (int i = 0; i < n_streams; ++i)
     {
         int ioffset = i * iElem;
         CHECK(cudaMemcpyAsync(&d_A[ioffset], &h_A[ioffset], iBytes,
@@ -209,7 +211,7 @@ int main(int argc, char **argv)
 
     printf("\n");
     printf("Actual results from overlapped data transfers:\n");
-    printf(" overlap with %d streams : %f ms (%f GB/s)\n", NSTREAM,
+    printf(" overlap with %d streams : %f ms (%f GB/s)\n", n_streams,
            execution_time, (nBytes * 2e-6) / execution_time );
     printf(" speedup                : %f \n",
            ((itotal - execution_time) * 100.0f) / itotal);
@@ -236,7 +238,7 @@ int main(int argc, char **argv)
     CHECK(cudaEventDestroy(stop));
 
     // destroy streams
-    for (int i = 0; i < NSTREAM; ++i)
+    for (int i = 0; i < n_streams; ++i)
     {
         CHECK(cudaStreamDestroy(stream[i]));
     }

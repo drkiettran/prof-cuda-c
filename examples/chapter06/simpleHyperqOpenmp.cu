@@ -55,6 +55,10 @@ __global__ void kernel_4()
 
 int main(int argc, char **argv)
 {
+    setbuf(stdout, NULL); // disable buffering.
+    printf("Run program as follows:\n");
+    printf("%s [num streams] [bigcase (0/1)]\n\n", argv[0]);
+    
     int n_streams = NSTREAM;
     int isize = 1;
     int iblock = 1;
