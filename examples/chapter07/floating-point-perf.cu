@@ -174,6 +174,8 @@ static void run_double_test(size_t N, int niters, int blocksPerGrid,
 
 int main(int argc, char **argv)
 {
+    setbuf(stdout, NULL);
+
     int i;
     double meanFloatToDeviceTime, meanFloatKernelTime, meanFloatFromDeviceTime;
     double meanDoubleToDeviceTime, meanDoubleKernelTime,
@@ -194,6 +196,8 @@ int main(int argc, char **argv)
     CHECK(cudaGetDeviceProperties(&deviceProperties, 0));
 
     size_t N = (freeMem * 0.9 / 2) / sizeof(double);
+    N = 65535;  // trashed GPU with above N value ...
+
     int threadsPerBlock = 256;
     int blocksPerGrid = (N + threadsPerBlock - 1) / threadsPerBlock;
 

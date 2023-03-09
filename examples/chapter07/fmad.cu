@@ -24,6 +24,8 @@ double host_fmad_kernel(double x, double y)
 
 int main(int argc, char **argv)
 {
+    setbuf(stdout, NULL);
+    
     double *d_out, h_out;
     double x = 2.891903;
     double y = -3.980364;

@@ -1,7 +1,9 @@
 #include "../common/common.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <cusparse_v2.h>
+// #include <cusparse_v2.h>
+#include <cusparse.h>
+#include <cuda_runtime.h>
 #include <cuda.h>
 
 /*
@@ -137,9 +139,9 @@ int main(int argc, char **argv)
                                       dCsrValA, dCsrRowPtrA, dCsrColIndA));
 
     // Perform matrix-vector multiplication with the CSR-formatted matrix A
-    CHECK_CUSPARSE(cusparseScsrmv(handle, CUSPARSE_OPERATION_NON_TRANSPOSE,
-                                  M, N, totalNnz, &alpha, descr, dCsrValA,
-                                  dCsrRowPtrA, dCsrColIndA, dX, &beta, dY));
+    // CHECK_CUSPARSE(cusparseScsrmv(handle, CUSPARSE_OPERATION_NON_TRANSPOSE,
+    //                               M, N, totalNnz, &alpha, descr, dCsrValA,
+    //                               dCsrRowPtrA, dCsrColIndA, dX, &beta, dY));
 
     // Copy the result vector back to the host
     CHECK(cudaMemcpy(Y, dY, sizeof(float) * M, cudaMemcpyDeviceToHost));

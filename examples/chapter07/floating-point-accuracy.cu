@@ -32,6 +32,8 @@ __global__ void kernel(float *F, double *D)
 
 int main(int argc, char **argv)
 {
+    setbuf(stdout, NULL);
+
     float *deviceF;
     float h_deviceF;
     double *deviceD;
