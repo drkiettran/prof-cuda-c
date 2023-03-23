@@ -8,7 +8,7 @@
             "name": "CUDA C++: Launch",
             "type": "cuda-gdb",
             "request": "launch",
-            "program": "${workspaceFolder}/floating-point-perf",
+            "program": "${workspaceFolder}/my-atomic-add-float",
             "args": "1"
         },
         {

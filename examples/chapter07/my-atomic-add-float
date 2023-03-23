@@ -11,6 +11,30 @@
 .address_size 64
 
 	// .globl	cudaMalloc
+.func  (.param .b32 func_retval0) __float2uint_rn
+(
+	.param .b32 __float2uint_rn_param_0
+)
+;
+.func  (.param .b32 func_retval0) __uint2float_rn
+(
+	.param .b32 __uint2float_rn_param_0
+)
+;
+.func  (.param .b32 func_retval0) __iAtomicCAS
+(
+	.param .b64 __iAtomicCAS_param_0,
+	.param .b32 __iAtomicCAS_param_1,
+	.param .b32 __iAtomicCAS_param_2
+)
+;
+.func  (.param .b32 func_retval0) __uAtomicCAS
+(
+	.param .b64 __uAtomicCAS_param_0,
+	.param .b32 __uAtomicCAS_param_1,
+	.param .b32 __uAtomicCAS_param_2
+)
+;
 
 .visible .func  (.param .b32 func_retval0) cudaMalloc(
 	.param .b64 cudaMalloc_param_0,
@@ -22,9 +46,9 @@
 	.reg .b64 	%SPL;
 	.reg .b32 	%r<3>;
 	.reg .b64 	%rd<5>;
-	.loc	4 70 0
+	.loc	3 70 0
 $L__func_begin0:
-	.loc	4 70 0
+	.loc	3 70 0
 
 
 	mov.u64 	%SPL, __local_depot0;
@@ -35,7 +59,7 @@ $L__func_begin0:
 	st.u64 	[%SP+0], %rd3;
 	mov.b64 	%rd4, %rd2;
 $L__tmp0:
-	.loc	4 72 3
+	.loc	3 72 3
 	mov.u32 	%r1, 999;
 	mov.b32 	%r2, %r1;
 	st.param.b32 	[func_retval0+0], %r2;
@@ -44,336 +68,24 @@ $L__tmp1:
 $L__func_end0:
 
 }
-	// .globl	_Z21lots_of_float_computePfimS_
-.visible .entry _Z21lots_of_float_computePfimS_(
-	.param .u64 _Z21lots_of_float_computePfimS__param_0,
-	.param .u32 _Z21lots_of_float_computePfimS__param_1,
-	.param .u64 _Z21lots_of_float_computePfimS__param_2,
-	.param .u64 _Z21lots_of_float_computePfimS__param_3
+.func  (.param .b32 func_retval0) _ZN53_INTERNAL_40d78a0e_22_my_atomic_add_float_cu_0ccc9cfe9atomicCASEPiii(
+	.param .b64 _ZN53_INTERNAL_40d78a0e_22_my_atomic_add_float_cu_0ccc9cfe9atomicCASEPiii_param_0,
+	.param .b32 _ZN53_INTERNAL_40d78a0e_22_my_atomic_add_float_cu_0ccc9cfe9atomicCASEPiii_param_1,
+	.param .b32 _ZN53_INTERNAL_40d78a0e_22_my_atomic_add_float_cu_0ccc9cfe9atomicCASEPiii_param_2
 )
 {
-	.reg .pred 	%p<5>;
-	.reg .f32 	%f<17>;
-	.reg .b32 	%r<10>;
-	.reg .b64 	%rd<19>;
-	.loc	5 20 0
+	.reg .b32 	%r<4>;
+	.reg .b64 	%rd<2>;
+	.loc	4 170 0
 $L__func_begin1:
-	.loc	5 20 0
+	.loc	4 170 0
 
 
-	ld.param.u64 	%rd8, [_Z21lots_of_float_computePfimS__param_0];
-	ld.param.u32 	%r1, [_Z21lots_of_float_computePfimS__param_1];
-	ld.param.u64 	%rd9, [_Z21lots_of_float_computePfimS__param_2];
-	ld.param.u64 	%rd10, [_Z21lots_of_float_computePfimS__param_3];
+	ld.param.u64 	%rd1, [_ZN53_INTERNAL_40d78a0e_22_my_atomic_add_float_cu_0ccc9cfe9atomicCASEPiii_param_0];
+	ld.param.u32 	%r1, [_ZN53_INTERNAL_40d78a0e_22_my_atomic_add_float_cu_0ccc9cfe9atomicCASEPiii_param_1];
+	ld.param.u32 	%r2, [_ZN53_INTERNAL_40d78a0e_22_my_atomic_add_float_cu_0ccc9cfe9atomicCASEPiii_param_2];
 $L__tmp2:
-	.loc	5 23 16
-	mov.u32 	%r2, %ctaid.x;
-	mov.u32 	%r3, %ntid.x;
-	mul.lo.s32 	%r4, %r2, %r3;
-	mov.u32 	%r5, %tid.x;
-	add.s32 	%r6, %r4, %r5;
-	cvt.u64.u32 	%rd1, %r6;
-$L__tmp3:
-	.loc	5 24 21
-	mov.u32 	%r7, %nctaid.x;
-	mov.u32 	%r8, %ntid.x;
-	mul.lo.s32 	%r9, %r7, %r8;
-	cvt.u64.u32 	%rd2, %r9;
-$L__tmp4:
-	.loc	5 26 5
-	mov.u64 	%rd17, %rd1;
-$L__tmp5:
-	bra.uni 	$L__BB1_1;
-
-$L__BB1_1:
-	mov.u64 	%rd3, %rd17;
-$L__tmp6:
-	cvt.s64.s32 	%rd11, %r1;
-	setp.lt.u64 	%p1, %rd3, %rd11;
-	not.pred 	%p2, %p1;
-	@%p2 bra 	$L__BB1_8;
-	bra.uni 	$L__BB1_2;
-
-$L__BB1_2:
-$L__tmp7:
-	.loc	5 29 19
-	shl.b64 	%rd12, %rd3, 2;
-	add.s64 	%rd13, %rd8, %rd12;
-	ld.f32 	%f4, [%rd13];
-	mov.f32 	%f1, %f4;
-$L__tmp8:
-	.loc	5 31 14
-	mov.u64 	%rd14, 0;
-	mov.b64 	%rd4, %rd14;
-$L__tmp9:
-	.loc	5 31 9
-	mov.u64 	%rd18, %rd4;
-$L__tmp10:
-	mov.f32 	%f16, %f1;
-$L__tmp11:
-	bra.uni 	$L__BB1_3;
-
-$L__BB1_3:
-	mov.f32 	%f2, %f16;
-	mov.u64 	%rd5, %rd18;
-$L__tmp12:
-	setp.lt.u64 	%p3, %rd5, %rd9;
-	not.pred 	%p4, %p3;
-	@%p4 bra 	$L__BB1_6;
-	bra.uni 	$L__BB1_4;
-
-$L__BB1_4:
-$L__tmp13:
-	.loc	5 33 13
-	add.f32 	%f5, %f2, 0f40A00000;
-	sub.f32 	%f6, %f5, 0f42CA0000;
-$L__tmp14:
-	.loc	5 34 13
-	div.rn.f32 	%f7, %f6, 0f40400000;
-	add.f32 	%f8, %f7, 0f42CC0000;
-$L__tmp15:
-	.loc	5 35 13
-	add.f32 	%f9, %f8, 0f3F88F5C3;
-	sub.f32 	%f10, %f9, 0f42CE0000;
-$L__tmp16:
-	.loc	5 36 13
-	div.rn.f32 	%f11, %f10, 0f3F84BC6A;
-	add.f32 	%f12, %f11, 0f42D00000;
-$L__tmp17:
-	.loc	5 37 13
-	add.f32 	%f13, %f12, 0f40400000;
-	sub.f32 	%f14, %f13, 0f42D20000;
-$L__tmp18:
-	.loc	5 38 13
-	div.rn.f32 	%f15, %f14, 0f3E6147AE;
-	add.f32 	%f3, %f15, 0f42D40000;
-$L__tmp19:
-	.loc	5 31 39
-	bra.uni 	$L__BB1_5;
-
-$L__BB1_5:
-	add.s64 	%rd6, %rd5, 1;
-$L__tmp20:
-	mov.u64 	%rd18, %rd6;
-$L__tmp21:
-	mov.f32 	%f16, %f3;
-$L__tmp22:
-	bra.uni 	$L__BB1_3;
-$L__tmp23:
-
-$L__BB1_6:
-	.loc	5 41 9
-	shl.b64 	%rd15, %rd3, 2;
-	add.s64 	%rd16, %rd10, %rd15;
-	st.f32 	[%rd16], %f2;
-$L__tmp24:
-	.loc	5 26 22
-	bra.uni 	$L__BB1_7;
-
-$L__BB1_7:
-	add.s64 	%rd7, %rd3, %rd2;
-$L__tmp25:
-	mov.u64 	%rd17, %rd7;
-$L__tmp26:
-	bra.uni 	$L__BB1_1;
-$L__tmp27:
-
-$L__BB1_8:
-	.loc	5 43 1
-	ret;
-$L__tmp28:
-$L__func_end1:
-
-}
-	// .globl	_Z22lots_of_double_computePdimS_
-.visible .entry _Z22lots_of_double_computePdimS_(
-	.param .u64 _Z22lots_of_double_computePdimS__param_0,
-	.param .u32 _Z22lots_of_double_computePdimS__param_1,
-	.param .u64 _Z22lots_of_double_computePdimS__param_2,
-	.param .u64 _Z22lots_of_double_computePdimS__param_3
-)
-{
-	.reg .pred 	%p<5>;
-	.reg .b32 	%r<10>;
-	.reg .f64 	%fd<17>;
-	.reg .b64 	%rd<19>;
-	.loc	5 48 0
-$L__func_begin2:
-	.loc	5 48 0
-
-
-	ld.param.u64 	%rd8, [_Z22lots_of_double_computePdimS__param_0];
-	ld.param.u32 	%r1, [_Z22lots_of_double_computePdimS__param_1];
-	ld.param.u64 	%rd9, [_Z22lots_of_double_computePdimS__param_2];
-	ld.param.u64 	%rd10, [_Z22lots_of_double_computePdimS__param_3];
-$L__tmp29:
-	.loc	5 51 16
-	mov.u32 	%r2, %ctaid.x;
-	mov.u32 	%r3, %ntid.x;
-	mul.lo.s32 	%r4, %r2, %r3;
-	mov.u32 	%r5, %tid.x;
-	add.s32 	%r6, %r4, %r5;
-	cvt.u64.u32 	%rd1, %r6;
-$L__tmp30:
-	.loc	5 52 21
-	mov.u32 	%r7, %nctaid.x;
-	mov.u32 	%r8, %ntid.x;
-	mul.lo.s32 	%r9, %r7, %r8;
-	cvt.u64.u32 	%rd2, %r9;
-$L__tmp31:
-	.loc	5 54 5
-	mov.u64 	%rd17, %rd1;
-$L__tmp32:
-	bra.uni 	$L__BB2_1;
-
-$L__BB2_1:
-	mov.u64 	%rd3, %rd17;
-$L__tmp33:
-	cvt.s64.s32 	%rd11, %r1;
-	setp.lt.u64 	%p1, %rd3, %rd11;
-	not.pred 	%p2, %p1;
-	@%p2 bra 	$L__BB2_8;
-	bra.uni 	$L__BB2_2;
-
-$L__BB2_2:
-$L__tmp34:
-	.loc	5 57 20
-	shl.b64 	%rd12, %rd3, 3;
-	add.s64 	%rd13, %rd8, %rd12;
-	ld.f64 	%fd4, [%rd13];
-	mov.f64 	%fd1, %fd4;
-$L__tmp35:
-	.loc	5 59 14
-	mov.u64 	%rd14, 0;
-	mov.b64 	%rd4, %rd14;
-$L__tmp36:
-	.loc	5 59 9
-	mov.u64 	%rd18, %rd4;
-$L__tmp37:
-	mov.f64 	%fd16, %fd1;
-$L__tmp38:
-	bra.uni 	$L__BB2_3;
-
-$L__BB2_3:
-	mov.f64 	%fd2, %fd16;
-	mov.u64 	%rd5, %rd18;
-$L__tmp39:
-	setp.lt.u64 	%p3, %rd5, %rd9;
-	not.pred 	%p4, %p3;
-	@%p4 bra 	$L__BB2_6;
-	bra.uni 	$L__BB2_4;
-
-$L__BB2_4:
-$L__tmp40:
-	.loc	5 61 13
-	add.f64 	%fd5, %fd2, 0d4014000000000000;
-	sub.f64 	%fd6, %fd5, 0d4059400000000000;
-$L__tmp41:
-	.loc	5 62 13
-	div.rn.f64 	%fd7, %fd6, 0d4008000000000000;
-	add.f64 	%fd8, %fd7, 0d4059800000000000;
-$L__tmp42:
-	.loc	5 63 13
-	add.f64 	%fd9, %fd8, 0d3FF11EB851EB851F;
-	sub.f64 	%fd10, %fd9, 0d4059C00000000000;
-$L__tmp43:
-	.loc	5 64 13
-	div.rn.f64 	%fd11, %fd10, 0d3FF0978D4FDF3B64;
-	add.f64 	%fd12, %fd11, 0d405A000000000000;
-$L__tmp44:
-	.loc	5 65 13
-	add.f64 	%fd13, %fd12, 0d4008000000000000;
-	sub.f64 	%fd14, %fd13, 0d405A400000000000;
-$L__tmp45:
-	.loc	5 66 13
-	div.rn.f64 	%fd15, %fd14, 0d3FCC28F5C28F5C29;
-	add.f64 	%fd3, %fd15, 0d405A800000000000;
-$L__tmp46:
-	.loc	5 59 39
-	bra.uni 	$L__BB2_5;
-
-$L__BB2_5:
-	add.s64 	%rd6, %rd5, 1;
-$L__tmp47:
-	mov.u64 	%rd18, %rd6;
-$L__tmp48:
-	mov.f64 	%fd16, %fd3;
-$L__tmp49:
-	bra.uni 	$L__BB2_3;
-$L__tmp50:
-
-$L__BB2_6:
-	.loc	5 69 9
-	shl.b64 	%rd15, %rd3, 3;
-	add.s64 	%rd16, %rd10, %rd15;
-	st.f64 	[%rd16], %fd2;
-$L__tmp51:
-	.loc	5 54 22
-	bra.uni 	$L__BB2_7;
-
-$L__BB2_7:
-	add.s64 	%rd7, %rd3, %rd2;
-$L__tmp52:
-	mov.u64 	%rd17, %rd7;
-$L__tmp53:
-	bra.uni 	$L__BB2_1;
-$L__tmp54:
-
-$L__BB2_8:
-	.loc	5 71 1
-	ret;
-$L__tmp55:
-$L__func_end2:
-
-}
-	// .globl	_ZN4dim3C1Ejjj
-.visible .func _ZN4dim3C1Ejjj(
-	.param .b64 _ZN4dim3C1Ejjj_param_0,
-	.param .b32 _ZN4dim3C1Ejjj_param_1,
-	.param .b32 _ZN4dim3C1Ejjj_param_2,
-	.param .b32 _ZN4dim3C1Ejjj_param_3
-)
-{
-	.reg .b32 	%r<4>;
-	.reg .b64 	%rd<2>;
-	.loc	3 423 0
-$L__func_begin3:
-	.loc	3 423 0
-
-
-	ld.param.u64 	%rd1, [_ZN4dim3C1Ejjj_param_0];
-	ld.param.u32 	%r1, [_ZN4dim3C1Ejjj_param_1];
-	ld.param.u32 	%r2, [_ZN4dim3C1Ejjj_param_2];
-	ld.param.u32 	%r3, [_ZN4dim3C1Ejjj_param_3];
-$L__tmp56:
-	.loc	3 423 131
-	st.u32 	[%rd1], %r1;
-	.loc	3 423 138
-	st.u32 	[%rd1+4], %r2;
-	.loc	3 423 145
-	st.u32 	[%rd1+8], %r3;
-	.loc	3 423 152
-	ret;
-$L__tmp57:
-$L__func_end3:
-
-}
-	// .globl	_ZN4dim3C2Ejjj
-.visible .func _ZN4dim3C2Ejjj(
-	.param .b64 _ZN4dim3C2Ejjj_param_0,
-	.param .b32 _ZN4dim3C2Ejjj_param_1,
-	.param .b32 _ZN4dim3C2Ejjj_param_2,
-	.param .b32 _ZN4dim3C2Ejjj_param_3
-)
-{
-	.reg .b32 	%r<4>;
-	.reg .b64 	%rd<2>;
-
-
-	ld.param.u64 	%rd1, [_ZN4dim3C2Ejjj_param_0];
-	ld.param.u32 	%r1, [_ZN4dim3C2Ejjj_param_1];
-	ld.param.u32 	%r2, [_ZN4dim3C2Ejjj_param_2];
-	ld.param.u32 	%r3, [_ZN4dim3C2Ejjj_param_3];
+	.loc	4 172 10
 	{ // callseq 0, 0
 	.reg .b32 temp_param_reg;
 	.param .b64 param0;
@@ -382,445 +94,654 @@ $L__func_end3:
 	st.param.b32 	[param1+0], %r1;
 	.param .b32 param2;
 	st.param.b32 	[param2+0], %r2;
-	.param .b32 param3;
-	st.param.b32 	[param3+0], %r3;
-	call.uni 
-	_ZN4dim3C1Ejjj, 
+	.param .b32 retval0;
+	call.uni (retval0), 
+	__iAtomicCAS, 
 	(
 	param0, 
 	param1, 
-	param2, 
-	param3
+	param2
 	);
+	ld.param.b32 	%r3, [retval0+0];
 	} // callseq 0
+	st.param.b32 	[func_retval0+0], %r3;
+	ret;
+$L__tmp3:
+$L__func_end1:
+
+}
+.func  (.param .b32 func_retval0) _ZN53_INTERNAL_40d78a0e_22_my_atomic_add_float_cu_0ccc9cfe9atomicCASEPjjj(
+	.param .b64 _ZN53_INTERNAL_40d78a0e_22_my_atomic_add_float_cu_0ccc9cfe9atomicCASEPjjj_param_0,
+	.param .b32 _ZN53_INTERNAL_40d78a0e_22_my_atomic_add_float_cu_0ccc9cfe9atomicCASEPjjj_param_1,
+	.param .b32 _ZN53_INTERNAL_40d78a0e_22_my_atomic_add_float_cu_0ccc9cfe9atomicCASEPjjj_param_2
+)
+{
+	.reg .b32 	%r<4>;
+	.reg .b64 	%rd<2>;
+	.loc	4 175 0
+$L__func_begin2:
+	.loc	4 175 0
+
+
+	ld.param.u64 	%rd1, [_ZN53_INTERNAL_40d78a0e_22_my_atomic_add_float_cu_0ccc9cfe9atomicCASEPjjj_param_0];
+	ld.param.u32 	%r1, [_ZN53_INTERNAL_40d78a0e_22_my_atomic_add_float_cu_0ccc9cfe9atomicCASEPjjj_param_1];
+	ld.param.u32 	%r2, [_ZN53_INTERNAL_40d78a0e_22_my_atomic_add_float_cu_0ccc9cfe9atomicCASEPjjj_param_2];
+$L__tmp4:
+	.loc	4 177 10
+	{ // callseq 1, 0
+	.reg .b32 temp_param_reg;
+	.param .b64 param0;
+	st.param.b64 	[param0+0], %rd1;
+	.param .b32 param1;
+	st.param.b32 	[param1+0], %r1;
+	.param .b32 param2;
+	st.param.b32 	[param2+0], %r2;
+	.param .b32 retval0;
+	call.uni (retval0), 
+	__uAtomicCAS, 
+	(
+	param0, 
+	param1, 
+	param2
+	);
+	ld.param.b32 	%r3, [retval0+0];
+	} // callseq 1
+	st.param.b32 	[func_retval0+0], %r3;
+	ret;
+$L__tmp5:
+$L__func_end2:
+
+}
+	// .globl	_Z16myAtomicAddFloatPff
+.visible .func  (.param .b32 func_retval0) _Z16myAtomicAddFloatPff(
+	.param .b64 _Z16myAtomicAddFloatPff_param_0,
+	.param .b32 _Z16myAtomicAddFloatPff_param_1
+)
+{
+	.reg .pred 	%p<3>;
+	.reg .f32 	%f<8>;
+	.reg .b32 	%r<11>;
+	.reg .b64 	%rd<3>;
+	.loc	5 11 0
+$L__func_begin3:
+	.loc	5 11 0
+
+
+	ld.param.u64 	%rd2, [_Z16myAtomicAddFloatPff_param_0];
+	ld.param.f32 	%f1, [_Z16myAtomicAddFloatPff_param_1];
+$L__tmp6:
+	.loc	5 16 22
+	ld.f32 	%f2, [%rd2];
+	mov.f32 	%f3, %f2;
+$L__tmp7:
+	.loc	5 17 29
+	{ // callseq 2, 0
+	.reg .b32 temp_param_reg;
+	.param .b32 param0;
+	st.param.f32 	[param0+0], %f3;
+	.param .b32 retval0;
+	call.uni (retval0), 
+	__float2uint_rn, 
+	(
+	param0
+	);
+	ld.param.b32 	%r1, [retval0+0];
+$L__tmp8:
+	} // callseq 2
+	.loc	5 18 26
+	add.f32 	%f4, %f3, %f1;
+	.loc	5 18 28
+	{ // callseq 3, 0
+	.reg .b32 temp_param_reg;
+	.param .b32 param0;
+	st.param.f32 	[param0+0], %f4;
+	.param .b32 retval0;
+	call.uni (retval0), 
+	__float2uint_rn, 
+	(
+	param0
+	);
+	ld.param.b32 	%r7, [retval0+0];
+$L__tmp9:
+	} // callseq 3
+	.loc	5 19 23
+	{ // callseq 4, 0
+	.reg .b32 temp_param_reg;
+	.param .b64 param0;
+	st.param.b64 	[param0+0], %rd2;
+	.param .b32 param1;
+	st.param.b32 	[param1+0], %r1;
+	.param .b32 param2;
+	st.param.b32 	[param2+0], %r7;
+	.param .b32 retval0;
+	call.uni (retval0), 
+	_ZN53_INTERNAL_40d78a0e_22_my_atomic_add_float_cu_0ccc9cfe9atomicCASEPjjj, 
+	(
+	param0, 
+	param1, 
+	param2
+	);
+	ld.param.b32 	%r2, [retval0+0];
+$L__tmp10:
+	} // callseq 4
+	.loc	5 21 5
+	mov.u32 	%r9, %r1;
+$L__tmp11:
+	mov.u32 	%r10, %r2;
+$L__tmp12:
+	bra.uni 	$L__BB3_1;
+
+$L__BB3_1:
+	mov.u32 	%r4, %r10;
+	mov.u32 	%r3, %r9;
+$L__tmp13:
+	setp.ne.s32 	%p1, %r4, %r3;
+	not.pred 	%p2, %p1;
+	@%p2 bra 	$L__BB3_3;
+	bra.uni 	$L__BB3_2;
+
+$L__BB3_2:
+$L__tmp14:
+	.loc	5 22 9
+	mov.b32 	%r5, %r4;
+$L__tmp15:
+	.loc	5 27 35
+	{ // callseq 6, 0
+	.reg .b32 temp_param_reg;
+	.param .b32 param0;
+	st.param.b32 	[param0+0], %r4;
+	.param .b32 retval0;
+	call.uni (retval0), 
+	__uint2float_rn, 
+	(
+	param0
+	);
+	ld.param.f32 	%f6, [retval0+0];
+	} // callseq 6
+	add.f32 	%f7, %f6, %f1;
+	.loc	5 27 19
+	{ // callseq 7, 0
+	.reg .b32 temp_param_reg;
+	.param .b32 param0;
+	st.param.f32 	[param0+0], %f7;
+	.param .b32 retval0;
+	call.uni (retval0), 
+	__float2uint_rn, 
+	(
+	param0
+	);
+	ld.param.b32 	%r8, [retval0+0];
+$L__tmp16:
+	} // callseq 7
+	.loc	5 28 23
+	{ // callseq 8, 0
+	.reg .b32 temp_param_reg;
+	.param .b64 param0;
+	st.param.b64 	[param0+0], %rd2;
+	.param .b32 param1;
+	st.param.b32 	[param1+0], %r5;
+	.param .b32 param2;
+	st.param.b32 	[param2+0], %r8;
+	.param .b32 retval0;
+	call.uni (retval0), 
+	_ZN53_INTERNAL_40d78a0e_22_my_atomic_add_float_cu_0ccc9cfe9atomicCASEPjjj, 
+	(
+	param0, 
+	param1, 
+	param2
+	);
+	ld.param.b32 	%r6, [retval0+0];
+$L__tmp17:
+	} // callseq 8
+	mov.u32 	%r9, %r5;
+$L__tmp18:
+	mov.u32 	%r10, %r6;
+$L__tmp19:
+	bra.uni 	$L__BB3_1;
+$L__tmp20:
+
+$L__BB3_3:
+	.loc	5 31 12
+	{ // callseq 5, 0
+	.reg .b32 temp_param_reg;
+	.param .b32 param0;
+	st.param.b32 	[param0+0], %r4;
+	.param .b32 retval0;
+	call.uni (retval0), 
+	__uint2float_rn, 
+	(
+	param0
+	);
+	ld.param.f32 	%f5, [retval0+0];
+	} // callseq 5
+	st.param.f32 	[func_retval0+0], %f5;
+	ret;
+$L__tmp21:
+$L__func_end3:
+
+}
+	// .globl	_Z11myAtomicAddPii
+.visible .func  (.param .b32 func_retval0) _Z11myAtomicAddPii(
+	.param .b64 _Z11myAtomicAddPii_param_0,
+	.param .b32 _Z11myAtomicAddPii_param_1
+)
+{
+	.reg .pred 	%p<3>;
+	.reg .b32 	%r<14>;
+	.reg .b64 	%rd<2>;
+	.loc	5 35 0
+$L__func_begin4:
+	.loc	5 35 0
+
+
+	ld.param.u64 	%rd1, [_Z11myAtomicAddPii_param_0];
+	ld.param.u32 	%r7, [_Z11myAtomicAddPii_param_1];
+$L__tmp22:
+	.loc	5 38 15
+	ld.u32 	%r8, [%rd1];
+	mov.b32 	%r1, %r8;
+$L__tmp23:
+	.loc	5 39 18
+	add.s32 	%r9, %r1, %r7;
+	.loc	5 39 20
+	{ // callseq 9, 0
+	.reg .b32 temp_param_reg;
+	.param .b64 param0;
+	st.param.b64 	[param0+0], %rd1;
+	.param .b32 param1;
+	st.param.b32 	[param1+0], %r1;
+	.param .b32 param2;
+	st.param.b32 	[param2+0], %r9;
+	.param .b32 retval0;
+	call.uni (retval0), 
+	_ZN53_INTERNAL_40d78a0e_22_my_atomic_add_float_cu_0ccc9cfe9atomicCASEPiii, 
+	(
+	param0, 
+	param1, 
+	param2
+	);
+	ld.param.b32 	%r2, [retval0+0];
+$L__tmp24:
+	} // callseq 9
+	.loc	5 42 5
+	mov.u32 	%r12, %r1;
+$L__tmp25:
+	mov.u32 	%r13, %r2;
+$L__tmp26:
+	bra.uni 	$L__BB4_1;
+
+$L__BB4_1:
+	mov.u32 	%r4, %r13;
+	mov.u32 	%r3, %r12;
+$L__tmp27:
+	setp.ne.s32 	%p1, %r4, %r3;
+	not.pred 	%p2, %p1;
+	@%p2 bra 	$L__BB4_3;
+	bra.uni 	$L__BB4_2;
+
+$L__BB4_2:
+$L__tmp28:
+	.loc	5 44 9
+	mov.b32 	%r5, %r4;
+$L__tmp29:
+	.loc	5 45 9
+	add.s32 	%r11, %r5, %r7;
+	.loc	5 45 20
+	{ // callseq 10, 0
+	.reg .b32 temp_param_reg;
+	.param .b64 param0;
+	st.param.b64 	[param0+0], %rd1;
+	.param .b32 param1;
+	st.param.b32 	[param1+0], %r5;
+	.param .b32 param2;
+	st.param.b32 	[param2+0], %r11;
+	.param .b32 retval0;
+	call.uni (retval0), 
+	_ZN53_INTERNAL_40d78a0e_22_my_atomic_add_float_cu_0ccc9cfe9atomicCASEPiii, 
+	(
+	param0, 
+	param1, 
+	param2
+	);
+	ld.param.b32 	%r6, [retval0+0];
+$L__tmp30:
+	} // callseq 10
+	mov.u32 	%r12, %r5;
+$L__tmp31:
+	mov.u32 	%r13, %r6;
+$L__tmp32:
+	bra.uni 	$L__BB4_1;
+$L__tmp33:
+
+$L__BB4_3:
+	.loc	5 48 5
+	mov.b32 	%r10, %r4;
+	st.param.b32 	[func_retval0+0], %r10;
+	ret;
+$L__tmp34:
+$L__func_end4:
+
+}
+	// .globl	_Z6kernelPf
+.visible .entry _Z6kernelPf(
+	.param .u64 _Z6kernelPf_param_0
+)
+{
+	.reg .f32 	%f<3>;
+	.reg .b64 	%rd<2>;
+	.loc	5 52 0
+$L__func_begin5:
+	.loc	5 52 0
+
+
+	ld.param.u64 	%rd1, [_Z6kernelPf_param_0];
+$L__tmp35:
+	.loc	5 55 5
+	mov.f32 	%f1, 0f3F800000;
+	{ // callseq 11, 0
+	.reg .b32 temp_param_reg;
+	.param .b64 param0;
+	st.param.b64 	[param0+0], %rd1;
+	.param .b32 param1;
+	st.param.f32 	[param1+0], %f1;
+	.param .b32 retval0;
+	call.uni (retval0), 
+	_Z16myAtomicAddFloatPff, 
+	(
+	param0, 
+	param1
+	);
+	ld.param.f32 	%f2, [retval0+0];
+	} // callseq 11
+	.loc	5 56 1
+	ret;
+$L__tmp36:
+$L__func_end5:
+
+}
+.func  (.param .b32 func_retval0) __float2uint_rn(
+	.param .b32 __float2uint_rn_param_0
+)
+{
+	.reg .f32 	%f<2>;
+	.reg .b32 	%r<2>;
+
+
+	ld.param.f32 	%f1, [__float2uint_rn_param_0];
+	cvt.rni.u32.f32 	%r1, %f1;
+	st.param.b32 	[func_retval0+0], %r1;
+	ret;
+
+}
+.func  (.param .b32 func_retval0) __uint2float_rn(
+	.param .b32 __uint2float_rn_param_0
+)
+{
+	.reg .f32 	%f<2>;
+	.reg .b32 	%r<2>;
+
+
+	ld.param.u32 	%r1, [__uint2float_rn_param_0];
+	cvt.rn.f32.u32 	%f1, %r1;
+	st.param.f32 	[func_retval0+0], %f1;
+	ret;
+
+}
+.func  (.param .b32 func_retval0) __iAtomicCAS(
+	.param .b64 __iAtomicCAS_param_0,
+	.param .b32 __iAtomicCAS_param_1,
+	.param .b32 __iAtomicCAS_param_2
+)
+{
+	.reg .b32 	%r<4>;
+	.reg .b64 	%rd<2>;
+
+
+	ld.param.u64 	%rd1, [__iAtomicCAS_param_0];
+	ld.param.u32 	%r1, [__iAtomicCAS_param_1];
+	ld.param.u32 	%r2, [__iAtomicCAS_param_2];
+	atom.cas.b32 	%r3, [%rd1], %r1, %r2;
+	st.param.b32 	[func_retval0+0], %r3;
+	ret;
+
+}
+.func  (.param .b32 func_retval0) __uAtomicCAS(
+	.param .b64 __uAtomicCAS_param_0,
+	.param .b32 __uAtomicCAS_param_1,
+	.param .b32 __uAtomicCAS_param_2
+)
+{
+	.reg .b32 	%r<4>;
+	.reg .b64 	%rd<2>;
+
+
+	ld.param.u64 	%rd1, [__uAtomicCAS_param_0];
+	ld.param.u32 	%r1, [__uAtomicCAS_param_1];
+	ld.param.u32 	%r2, [__uAtomicCAS_param_2];
+	atom.cas.b32 	%r3, [%rd1], %r1, %r2;
+	st.param.b32 	[func_retval0+0], %r3;
 	ret;
 
 }
 	.file	1 "/usr/local/cuda/bin/../targets/x86_64-linux/include/driver_types.h"
 	.file	2 "/usr/lib/gcc/x86_64-linux-gnu/9/include/stddef.h"
-	.file	3 "/usr/local/cuda/bin/../targets/x86_64-linux/include/vector_types.h"
-	.file	4 "/usr/local/cuda/bin/../targets/x86_64-linux/include/cuda_device_runtime_api.h"
-	.file	5 "/home/kasm-user/cisc701/professional-cuda-c-programming/examples/chapter07/floating-point-perf.cu"
+	.file	3 "/usr/local/cuda/bin/../targets/x86_64-linux/include/cuda_device_runtime_api.h"
+	.file	4 "/usr/local/cuda/bin/../targets/x86_64-linux/include/device_atomic_functions.hpp"
+	.file	5 "/home/kasm-user/cisc701/professional-cuda-c-programming/examples/chapter07/my-atomic-add-float.cu"
 	.section	.debug_loc
 	{
-.b64 $L__tmp3
-.b64 $L__tmp5
-.b8 6
-.b8 0
-.b8 144
-.b8 177
-.b8 200
-.b8 201
-.b8 171
-.b8 2
-.b64 $L__tmp5
-.b64 $L__tmp6
-.b8 7
-.b8 0
-.b8 144
-.b8 183
-.b8 226
-.b8 144
-.b8 147
-.b8 215
-.b8 4
-.b64 $L__tmp6
-.b64 $L__tmp25
-.b8 6
-.b8 0
-.b8 144
-.b8 179
-.b8 200
-.b8 201
-.b8 171
-.b8 2
-.b64 $L__tmp25
-.b64 $L__tmp26
-.b8 6
-.b8 0
-.b8 144
-.b8 183
-.b8 200
-.b8 201
-.b8 171
-.b8 2
-.b64 $L__tmp26
-.b64 $L__func_end1
-.b8 7
-.b8 0
-.b8 144
-.b8 183
-.b8 226
-.b8 144
-.b8 147
-.b8 215
-.b8 4
-.b64 0
-.b64 0
 .b64 $L__tmp8
 .b64 $L__tmp11
 .b8 5
 .b8 0
 .b8 144
 .b8 177
-.b8 204
+.b8 228
 .b8 149
 .b8 1
 .b64 $L__tmp11
-.b64 $L__tmp12
-.b8 6
-.b8 0
-.b8 144
-.b8 182
-.b8 226
-.b8 152
-.b8 171
-.b8 2
-.b64 $L__tmp12
-.b64 $L__tmp14
+.b64 $L__tmp13
 .b8 5
 .b8 0
 .b8 144
-.b8 178
-.b8 204
+.b8 185
+.b8 228
 .b8 149
 .b8 1
-.b64 $L__tmp14
+.b64 $L__tmp13
 .b64 $L__tmp15
-.b8 5
-.b8 0
-.b8 144
-.b8 182
-.b8 204
-.b8 149
-.b8 1
-.b64 $L__tmp15
-.b64 $L__tmp16
-.b8 5
-.b8 0
-.b8 144
-.b8 184
-.b8 204
-.b8 149
-.b8 1
-.b64 $L__tmp16
-.b64 $L__tmp17
-.b8 6
-.b8 0
-.b8 144
-.b8 176
-.b8 226
-.b8 152
-.b8 171
-.b8 2
-.b64 $L__tmp17
-.b64 $L__tmp18
-.b8 6
-.b8 0
-.b8 144
-.b8 178
-.b8 226
-.b8 152
-.b8 171
-.b8 2
-.b64 $L__tmp18
-.b64 $L__tmp19
-.b8 6
-.b8 0
-.b8 144
-.b8 180
-.b8 226
-.b8 152
-.b8 171
-.b8 2
-.b64 $L__tmp19
-.b64 $L__tmp22
 .b8 5
 .b8 0
 .b8 144
 .b8 179
-.b8 204
+.b8 228
 .b8 149
 .b8 1
-.b64 $L__tmp22
-.b64 $L__func_end1
-.b8 6
+.b64 $L__tmp15
+.b64 $L__tmp18
+.b8 5
 .b8 0
 .b8 144
-.b8 182
-.b8 226
-.b8 152
-.b8 171
-.b8 2
+.b8 181
+.b8 228
+.b8 149
+.b8 1
+.b64 $L__tmp18
+.b64 $L__func_end3
+.b8 5
+.b8 0
+.b8 144
+.b8 185
+.b8 228
+.b8 149
+.b8 1
 .b64 0
 .b64 0
 .b64 $L__tmp9
-.b64 $L__tmp10
-.b8 6
+.b64 $L__tmp16
+.b8 5
 .b8 0
 .b8 144
-.b8 180
-.b8 200
-.b8 201
-.b8 171
-.b8 2
-.b64 $L__tmp10
-.b64 $L__tmp12
-.b8 7
+.b8 183
+.b8 228
+.b8 149
+.b8 1
+.b64 $L__tmp16
+.b64 $L__func_end3
+.b8 5
 .b8 0
 .b8 144
 .b8 184
-.b8 226
-.b8 144
-.b8 147
-.b8 215
-.b8 4
+.b8 228
+.b8 149
+.b8 1
+.b64 0
+.b64 0
+.b64 $L__tmp10
 .b64 $L__tmp12
-.b64 $L__tmp20
-.b8 6
-.b8 0
-.b8 144
-.b8 181
-.b8 200
-.b8 201
-.b8 171
-.b8 2
-.b64 $L__tmp20
-.b64 $L__tmp21
-.b8 6
-.b8 0
-.b8 144
-.b8 182
-.b8 200
-.b8 201
-.b8 171
-.b8 2
-.b64 $L__tmp21
-.b64 $L__func_end1
-.b8 7
-.b8 0
-.b8 144
-.b8 184
-.b8 226
-.b8 144
-.b8 147
-.b8 215
-.b8 4
-.b64 0
-.b64 0
-.b64 $L__tmp30
-.b64 $L__tmp32
-.b8 6
-.b8 0
-.b8 144
-.b8 177
-.b8 200
-.b8 201
-.b8 171
-.b8 2
-.b64 $L__tmp32
-.b64 $L__tmp33
-.b8 7
-.b8 0
-.b8 144
-.b8 183
-.b8 226
-.b8 144
-.b8 147
-.b8 215
-.b8 4
-.b64 $L__tmp33
-.b64 $L__tmp52
-.b8 6
-.b8 0
-.b8 144
-.b8 179
-.b8 200
-.b8 201
-.b8 171
-.b8 2
-.b64 $L__tmp52
-.b64 $L__tmp53
-.b8 6
-.b8 0
-.b8 144
-.b8 183
-.b8 200
-.b8 201
-.b8 171
-.b8 2
-.b64 $L__tmp53
-.b64 $L__func_end2
-.b8 7
-.b8 0
-.b8 144
-.b8 183
-.b8 226
-.b8 144
-.b8 147
-.b8 215
-.b8 4
-.b64 0
-.b64 0
-.b64 $L__tmp35
-.b64 $L__tmp38
-.b8 6
-.b8 0
-.b8 144
-.b8 177
-.b8 200
-.b8 153
-.b8 171
-.b8 2
-.b64 $L__tmp38
-.b64 $L__tmp39
-.b8 7
-.b8 0
-.b8 144
-.b8 182
-.b8 226
-.b8 144
-.b8 179
-.b8 214
-.b8 4
-.b64 $L__tmp39
-.b64 $L__tmp41
-.b8 6
+.b8 5
 .b8 0
 .b8 144
 .b8 178
-.b8 200
-.b8 153
-.b8 171
-.b8 2
-.b64 $L__tmp41
-.b64 $L__tmp42
+.b8 228
+.b8 149
+.b8 1
+.b64 $L__tmp12
+.b64 $L__tmp13
 .b8 6
-.b8 0
-.b8 144
-.b8 182
-.b8 200
-.b8 153
-.b8 171
-.b8 2
-.b64 $L__tmp42
-.b64 $L__tmp43
-.b8 6
-.b8 0
-.b8 144
-.b8 184
-.b8 200
-.b8 153
-.b8 171
-.b8 2
-.b64 $L__tmp43
-.b64 $L__tmp44
-.b8 7
 .b8 0
 .b8 144
 .b8 176
 .b8 226
+.b8 200
+.b8 171
+.b8 2
+.b64 $L__tmp13
+.b64 $L__tmp17
+.b8 5
+.b8 0
 .b8 144
-.b8 179
-.b8 214
-.b8 4
-.b64 $L__tmp44
-.b64 $L__tmp45
-.b8 7
+.b8 180
+.b8 228
+.b8 149
+.b8 1
+.b64 $L__tmp17
+.b64 $L__tmp19
+.b8 5
+.b8 0
+.b8 144
+.b8 182
+.b8 228
+.b8 149
+.b8 1
+.b64 $L__tmp19
+.b64 $L__func_end3
+.b8 6
+.b8 0
+.b8 144
+.b8 176
+.b8 226
+.b8 200
+.b8 171
+.b8 2
+.b64 0
+.b64 0
+.b64 $L__tmp23
+.b64 $L__tmp25
+.b8 5
+.b8 0
+.b8 144
+.b8 177
+.b8 228
+.b8 149
+.b8 1
+.b64 $L__tmp25
+.b64 $L__tmp27
+.b8 6
 .b8 0
 .b8 144
 .b8 178
 .b8 226
-.b8 144
-.b8 179
-.b8 214
-.b8 4
-.b64 $L__tmp45
-.b64 $L__tmp46
-.b8 7
-.b8 0
-.b8 144
-.b8 180
-.b8 226
-.b8 144
-.b8 179
-.b8 214
-.b8 4
-.b64 $L__tmp46
-.b64 $L__tmp49
-.b8 6
-.b8 0
-.b8 144
-.b8 179
 .b8 200
-.b8 153
 .b8 171
 .b8 2
-.b64 $L__tmp49
-.b64 $L__func_end2
-.b8 7
+.b64 $L__tmp27
+.b64 $L__tmp29
+.b8 5
 .b8 0
-.b8 144
-.b8 182
-.b8 226
 .b8 144
 .b8 179
-.b8 214
-.b8 4
-.b64 0
-.b64 0
-.b64 $L__tmp36
-.b64 $L__tmp37
-.b8 6
-.b8 0
-.b8 144
-.b8 180
-.b8 200
-.b8 201
-.b8 171
-.b8 2
-.b64 $L__tmp37
-.b64 $L__tmp39
-.b8 7
-.b8 0
-.b8 144
-.b8 184
-.b8 226
-.b8 144
-.b8 147
-.b8 215
-.b8 4
-.b64 $L__tmp39
-.b64 $L__tmp47
-.b8 6
+.b8 228
+.b8 149
+.b8 1
+.b64 $L__tmp29
+.b64 $L__tmp31
+.b8 5
 .b8 0
 .b8 144
 .b8 181
-.b8 200
-.b8 201
-.b8 171
-.b8 2
-.b64 $L__tmp47
-.b64 $L__tmp48
+.b8 228
+.b8 149
+.b8 1
+.b64 $L__tmp31
+.b64 $L__func_end4
 .b8 6
 .b8 0
 .b8 144
-.b8 182
+.b8 178
+.b8 226
 .b8 200
-.b8 201
 .b8 171
 .b8 2
-.b64 $L__tmp48
-.b64 $L__func_end2
-.b8 7
+.b64 0
+.b64 0
+.b64 $L__tmp24
+.b64 $L__tmp26
+.b8 5
 .b8 0
 .b8 144
-.b8 184
-.b8 226
+.b8 178
+.b8 228
+.b8 149
+.b8 1
+.b64 $L__tmp26
+.b64 $L__tmp27
+.b8 6
+.b8 0
 .b8 144
-.b8 147
-.b8 215
-.b8 4
+.b8 179
+.b8 226
+.b8 200
+.b8 171
+.b8 2
+.b64 $L__tmp27
+.b64 $L__tmp30
+.b8 5
+.b8 0
+.b8 144
+.b8 180
+.b8 228
+.b8 149
+.b8 1
+.b64 $L__tmp30
+.b64 $L__tmp32
+.b8 5
+.b8 0
+.b8 144
+.b8 182
+.b8 228
+.b8 149
+.b8 1
+.b64 $L__tmp32
+.b64 $L__func_end4
+.b8 6
+.b8 0
+.b8 144
+.b8 179
+.b8 226
+.b8 200
+.b8 171
+.b8 2
 .b64 0
 .b64 0
 	}
@@ -903,34 +824,6 @@ $L__func_end3:
 .b8 0
 .b8 0
 .b8 7
-.b8 19
-.b8 1
-.b8 3
-.b8 8
-.b8 11
-.b8 11
-.b8 58
-.b8 11
-.b8 59
-.b8 5
-.b8 0
-.b8 0
-.b8 8
-.b8 13
-.b8 0
-.b8 3
-.b8 8
-.b8 73
-.b8 19
-.b8 58
-.b8 11
-.b8 59
-.b8 5
-.b8 56
-.b8 10
-.b8 0
-.b8 0
-.b8 9
 .b8 46
 .b8 1
 .b8 17
@@ -953,7 +846,7 @@ $L__func_end3:
 .b8 12
 .b8 0
 .b8 0
-.b8 10
+.b8 8
 .b8 5
 .b8 0
 .b8 51
@@ -970,7 +863,7 @@ $L__func_end3:
 .b8 19
 .b8 0
 .b8 0
-.b8 11
+.b8 9
 .b8 5
 .b8 0
 .b8 2
@@ -987,13 +880,51 @@ $L__func_end3:
 .b8 19
 .b8 0
 .b8 0
-.b8 12
+.b8 10
+.b8 46
+.b8 1
+.b8 17
+.b8 1
+.b8 18
+.b8 1
+.b8 64
+.b8 10
+.b8 135,64
+.b8 8
+.b8 3
+.b8 8
+.b8 58
+.b8 11
+.b8 59
+.b8 11
+.b8 73
+.b8 19
+.b8 0
+.b8 0
+.b8 11
 .b8 11
 .b8 1
 .b8 17
 .b8 1
 .b8 18
 .b8 1
+.b8 0
+.b8 0
+.b8 12
+.b8 52
+.b8 0
+.b8 2
+.b8 10
+.b8 51
+.b8 11
+.b8 3
+.b8 8
+.b8 58
+.b8 11
+.b8 59
+.b8 11
+.b8 73
+.b8 19
 .b8 0
 .b8 0
 .b8 13
@@ -1012,83 +943,13 @@ $L__func_end3:
 .b8 0
 .b8 0
 .b8 14
-.b8 52
+.b8 59
 .b8 0
-.b8 2
-.b8 10
-.b8 51
-.b8 11
 .b8 3
 .b8 8
-.b8 58
-.b8 11
-.b8 59
-.b8 11
-.b8 73
-.b8 19
 .b8 0
 .b8 0
 .b8 15
-.b8 46
-.b8 1
-.b8 17
-.b8 1
-.b8 18
-.b8 1
-.b8 64
-.b8 10
-.b8 135,64
-.b8 8
-.b8 3
-.b8 8
-.b8 58
-.b8 11
-.b8 59
-.b8 5
-.b8 73
-.b8 19
-.b8 63
-.b8 12
-.b8 0
-.b8 0
-.b8 16
-.b8 5
-.b8 0
-.b8 2
-.b8 10
-.b8 51
-.b8 11
-.b8 3
-.b8 8
-.b8 73
-.b8 19
-.b8 0
-.b8 0
-.b8 17
-.b8 5
-.b8 0
-.b8 2
-.b8 10
-.b8 51
-.b8 11
-.b8 3
-.b8 8
-.b8 58
-.b8 11
-.b8 59
-.b8 5
-.b8 73
-.b8 19
-.b8 0
-.b8 0
-.b8 18
-.b8 59
-.b8 0
-.b8 3
-.b8 8
-.b8 0
-.b8 0
-.b8 19
 .b8 15
 .b8 0
 .b8 73
@@ -1097,18 +958,11 @@ $L__func_end3:
 .b8 6
 .b8 0
 .b8 0
-.b8 20
-.b8 38
-.b8 0
-.b8 73
-.b8 19
-.b8 0
-.b8 0
 .b8 0
 	}
 	.section	.debug_info
 	{
-.b32 4891
+.b32 4958
 .b8 2
 .b8 0
 .b32 .debug_abbrev
@@ -1118,7 +972,7 @@ $L__func_end3:
 .b8 0
 .b8 4
 .b8 0
-.b8 102,108,111,97,116,105,110,103,45,112,111,105,110,116,45,112,101,114,102,46,99,117
+.b8 109,121,45,97,116,111,109,105,99,45,97,100,100,45,102,108,111,97,116,46,99,117
 .b8 0
 .b32 .debug_line
 .b8 47,104,111,109,101,47,107,97,115,109,45,117,115,101,114,47,99,105,115,99,55,48,49,47,112,114,111,102,101,115,115,105,111,110,97,108,45,99,117,100
@@ -1643,49 +1497,6 @@ $L__func_end3:
 .b8 7
 .b8 8
 .b8 7
-.b8 100,105,109,51
-.b8 0
-.b8 12
-.b8 3
-.b8 162
-.b8 1
-.b8 8
-.b8 120
-.b8 0
-.b32 4020
-.b8 3
-.b8 164
-.b8 1
-.b8 2
-.b8 35
-.b8 0
-.b8 8
-.b8 121
-.b8 0
-.b32 4020
-.b8 3
-.b8 164
-.b8 1
-.b8 2
-.b8 35
-.b8 4
-.b8 8
-.b8 122
-.b8 0
-.b32 4020
-.b8 3
-.b8 164
-.b8 1
-.b8 2
-.b8 35
-.b8 8
-.b8 0
-.b8 6
-.b8 117,110,115,105,103,110,101,100,32,105,110,116
-.b8 0
-.b8 7
-.b8 4
-.b8 9
 .b64 $L__func_begin0
 .b64 $L__func_end0
 .b8 1
@@ -1694,11 +1505,11 @@ $L__func_end3:
 .b8 0
 .b8 99,117,100,97,77,97,108,108,111,99
 .b8 0
-.b8 4
+.b8 3
 .b8 70
 .b32 3919
 .b8 1
-.b8 10
+.b8 8
 .b8 6
 .b8 11
 .b8 3
@@ -1707,10 +1518,10 @@ $L__func_end3:
 .b8 0
 .b8 112
 .b8 0
-.b8 4
+.b8 3
 .b8 70
-.b32 4818
-.b8 11
+.b32 4916
+.b8 9
 .b8 6
 .b8 144
 .b8 180
@@ -1721,219 +1532,225 @@ $L__func_end3:
 .b8 2
 .b8 115
 .b8 0
-.b8 4
+.b8 3
 .b8 70
 .b32 3939
 .b8 0
-.b8 9
+.b8 10
 .b64 $L__func_begin1
 .b64 $L__func_end1
 .b8 1
 .b8 156
-.b8 95,90,50,49,108,111,116,115,95,111,102,95,102,108,111,97,116,95,99,111,109,112,117,116,101,80,102,105,109,83,95
+.b8 95,90,78,53,51,95,73,78,84,69,82,78,65,76,95,52,48,100,55,56,97,48,101,95,50,50,95,109,121,95,97,116,111,109,105,99,95,97,100,100
+.b8 95,102,108,111,97,116,95,99,117,95,48,99,99,99,57,99,102,101,57,97,116,111,109,105,99,67,65,83,69,80,105,105,105
 .b8 0
-.b8 108,111,116,115,95,111,102,95,102,108,111,97,116,95,99,111,109,112,117,116,101
+.b8 97,116,111,109,105,99,67,65,83
 .b8 0
-.b8 5
-.b8 20
-.b32 4812
-.b8 1
-.b8 11
+.b8 4
+.b8 170
+.b32 4878
 .b8 9
-.b8 3
-.b64 _Z21lots_of_float_computePfimS__param_0
-.b8 7
-.b8 105,110,112,117,116,115
-.b8 0
-.b8 5
-.b8 20
-.b32 4836
-.b8 11
-.b8 9
-.b8 3
-.b64 _Z21lots_of_float_computePfimS__param_1
-.b8 7
-.b8 78
-.b8 0
-.b8 5
-.b8 20
-.b32 4854
-.b8 11
-.b8 9
-.b8 3
-.b64 _Z21lots_of_float_computePfimS__param_2
-.b8 7
-.b8 110,105,116,101,114,115
-.b8 0
-.b8 5
-.b8 20
-.b32 3939
-.b8 11
-.b8 9
-.b8 3
-.b64 _Z21lots_of_float_computePfimS__param_3
-.b8 7
-.b8 111,117,116,112,117,116,115
-.b8 0
-.b8 5
-.b8 21
-.b32 4836
-.b8 12
-.b64 $L__tmp2
-.b64 $L__tmp28
-.b8 13
-.b32 .debug_loc
-.b8 116,105,100
-.b8 0
-.b8 5
-.b8 23
-.b32 3939
-.b8 14
 .b8 6
 .b8 144
-.b8 178
+.b8 177
 .b8 200
 .b8 201
 .b8 171
 .b8 2
 .b8 2
-.b8 110,116,104,114,101,97,100,115
+.b8 97,100,100,114,101,115,115
 .b8 0
+.b8 4
+.b8 170
+.b32 4934
+.b8 9
 .b8 5
-.b8 24
-.b32 3939
-.b8 12
-.b64 $L__tmp7
-.b64 $L__tmp24
-.b8 13
-.b32 .debug_loc+138
+.b8 144
+.b8 177
+.b8 228
+.b8 149
+.b8 1
+.b8 2
+.b8 99,111,109,112,97,114,101
+.b8 0
+.b8 4
+.b8 170
+.b32 4878
+.b8 9
+.b8 5
+.b8 144
+.b8 178
+.b8 228
+.b8 149
+.b8 1
+.b8 2
 .b8 118,97,108
 .b8 0
-.b8 5
-.b8 29
-.b32 4845
-.b8 13
-.b32 .debug_loc+389
-.b8 105,116,101,114
+.b8 4
+.b8 170
+.b32 4878
 .b8 0
-.b8 5
-.b8 28
-.b32 3939
-.b8 0
-.b8 0
-.b8 0
-.b8 9
+.b8 10
 .b64 $L__func_begin2
 .b64 $L__func_end2
 .b8 1
 .b8 156
-.b8 95,90,50,50,108,111,116,115,95,111,102,95,100,111,117,98,108,101,95,99,111,109,112,117,116,101,80,100,105,109,83,95
+.b8 95,90,78,53,51,95,73,78,84,69,82,78,65,76,95,52,48,100,55,56,97,48,101,95,50,50,95,109,121,95,97,116,111,109,105,99,95,97,100,100
+.b8 95,102,108,111,97,116,95,99,117,95,48,99,99,99,57,99,102,101,57,97,116,111,109,105,99,67,65,83,69,80,106,106,106
 .b8 0
-.b8 108,111,116,115,95,111,102,95,100,111,117,98,108,101,95,99,111,109,112,117,116,101
+.b8 97,116,111,109,105,99,67,65,83
 .b8 0
-.b8 5
-.b8 48
-.b32 4812
-.b8 1
-.b8 11
+.b8 4
+.b8 175
+.b32 4885
 .b8 9
-.b8 3
-.b64 _Z22lots_of_double_computePdimS__param_0
-.b8 7
-.b8 105,110,112,117,116,115
-.b8 0
-.b8 5
-.b8 48
-.b32 4861
-.b8 11
-.b8 9
-.b8 3
-.b64 _Z22lots_of_double_computePdimS__param_1
-.b8 7
-.b8 78
-.b8 0
-.b8 5
-.b8 48
-.b32 4854
-.b8 11
-.b8 9
-.b8 3
-.b64 _Z22lots_of_double_computePdimS__param_2
-.b8 7
-.b8 110,105,116,101,114,115
-.b8 0
-.b8 5
-.b8 48
-.b32 3939
-.b8 11
-.b8 9
-.b8 3
-.b64 _Z22lots_of_double_computePdimS__param_3
-.b8 7
-.b8 111,117,116,112,117,116,115
-.b8 0
-.b8 5
-.b8 49
-.b32 4861
-.b8 12
-.b64 $L__tmp29
-.b64 $L__tmp55
-.b8 13
-.b32 .debug_loc+527
-.b8 116,105,100
-.b8 0
-.b8 5
-.b8 51
-.b32 3939
-.b8 14
 .b8 6
 .b8 144
-.b8 178
+.b8 177
 .b8 200
 .b8 201
 .b8 171
 .b8 2
 .b8 2
-.b8 110,116,104,114,101,97,100,115
+.b8 97,100,100,114,101,115,115
 .b8 0
+.b8 4
+.b8 175
+.b32 4943
+.b8 9
 .b8 5
-.b8 52
-.b32 3939
-.b8 12
-.b64 $L__tmp34
-.b64 $L__tmp51
-.b8 13
-.b32 .debug_loc+665
+.b8 144
+.b8 177
+.b8 228
+.b8 149
+.b8 1
+.b8 2
+.b8 99,111,109,112,97,114,101
+.b8 0
+.b8 4
+.b8 175
+.b32 4885
+.b8 9
+.b8 5
+.b8 144
+.b8 178
+.b8 228
+.b8 149
+.b8 1
+.b8 2
 .b8 118,97,108
 .b8 0
-.b8 5
-.b8 57
-.b32 4870
-.b8 13
-.b32 .debug_loc+926
-.b8 105,116,101,114
+.b8 4
+.b8 175
+.b32 4885
 .b8 0
-.b8 5
-.b8 56
-.b32 3939
-.b8 0
-.b8 0
-.b8 0
-.b8 15
+.b8 7
 .b64 $L__func_begin3
 .b64 $L__func_end3
 .b8 1
 .b8 156
-.b8 95,90,78,52,100,105,109,51,67,49,69,106,106,106
+.b8 95,90,49,54,109,121,65,116,111,109,105,99,65,100,100,70,108,111,97,116,80,102,102
 .b8 0
-.b8 100,105,109,51
+.b8 109,121,65,116,111,109,105,99,65,100,100,70,108,111,97,116
 .b8 0
-.b8 3
-.b8 167
+.b8 5
+.b8 11
+.b32 4901
 .b8 1
-.b32 4812
+.b8 9
+.b8 6
+.b8 144
+.b8 178
+.b8 200
+.b8 201
+.b8 171
+.b8 2
+.b8 2
+.b8 97,100,100,114,101,115,115
+.b8 0
+.b8 5
+.b8 11
+.b32 4952
+.b8 9
+.b8 5
+.b8 144
+.b8 177
+.b8 204
+.b8 149
 .b8 1
+.b8 2
+.b8 105,110,99,114
+.b8 0
+.b8 5
+.b8 11
+.b32 4901
+.b8 11
+.b64 $L__tmp6
+.b64 $L__tmp21
+.b8 12
+.b8 6
+.b8 144
+.b8 178
+.b8 200
+.b8 201
+.b8 171
+.b8 2
+.b8 2
+.b8 116,121,112,101,100,65,100,100,114,101,115,115
+.b8 0
+.b8 5
+.b8 14
+.b32 4943
+.b8 12
+.b8 5
+.b8 144
+.b8 179
+.b8 204
+.b8 149
+.b8 1
+.b8 2
+.b8 99,117,114,114,101,110,116,86,97,108
+.b8 0
+.b8 5
 .b8 16
+.b32 4901
+.b8 13
+.b32 .debug_loc
+.b8 101,120,112,101,99,116,101,100
+.b8 0
+.b8 5
+.b8 17
+.b32 4885
+.b8 13
+.b32 .debug_loc+131
+.b8 100,101,115,105,114,101,100
+.b8 0
+.b8 5
+.b8 18
+.b32 4885
+.b8 13
+.b32 .debug_loc+193
+.b8 111,108,100,73,110,116,86,97,108,117,101
+.b8 0
+.b8 5
+.b8 19
+.b32 4878
+.b8 0
+.b8 0
+.b8 7
+.b64 $L__func_begin4
+.b64 $L__func_end4
+.b8 1
+.b8 156
+.b8 95,90,49,49,109,121,65,116,111,109,105,99,65,100,100,80,105,105
+.b8 0
+.b8 109,121,65,116,111,109,105,99,65,100,100
+.b8 0
+.b8 5
+.b8 35
+.b32 4878
+.b8 1
+.b8 9
 .b8 6
 .b8 144
 .b8 177
@@ -1942,86 +1759,99 @@ $L__func_end3:
 .b8 171
 .b8 2
 .b8 2
-.b8 116,104,105,115
+.b8 97,100,100,114,101,115,115
 .b8 0
-.b32 4880
-.b8 17
+.b8 5
+.b8 35
+.b32 4934
+.b8 9
 .b8 5
 .b8 144
-.b8 177
+.b8 183
 .b8 228
 .b8 149
 .b8 1
 .b8 2
-.b8 118,120
+.b8 105,110,99,114
 .b8 0
-.b8 3
-.b8 167
-.b8 1
-.b32 4020
-.b8 17
 .b8 5
-.b8 144
-.b8 178
-.b8 228
-.b8 149
-.b8 1
-.b8 2
-.b8 118,121
+.b8 35
+.b32 4878
+.b8 11
+.b64 $L__tmp22
+.b64 $L__tmp34
+.b8 13
+.b32 .debug_loc+326
+.b8 103,117,101,115,115
 .b8 0
-.b8 3
-.b8 167
-.b8 1
-.b32 4020
-.b8 17
 .b8 5
-.b8 144
-.b8 179
-.b8 228
-.b8 149
-.b8 1
-.b8 2
-.b8 118,122
+.b8 38
+.b32 4878
+.b8 13
+.b32 .debug_loc+459
+.b8 111,108,100,86,97,108,117,101
 .b8 0
+.b8 5
+.b8 39
+.b32 4878
+.b8 0
+.b8 0
+.b8 7
+.b64 $L__func_begin5
+.b64 $L__func_end5
+.b8 1
+.b8 156
+.b8 95,90,54,107,101,114,110,101,108,80,102
+.b8 0
+.b8 107,101,114,110,101,108
+.b8 0
+.b8 5
+.b8 52
+.b32 4910
+.b8 1
+.b8 9
+.b8 9
 .b8 3
-.b8 167
-.b8 1
-.b32 4020
+.b64 _Z6kernelPf_param_0
+.b8 7
+.b8 115,104,97,114,101,100,70,108,111,97,116
 .b8 0
-.b8 18
-.b8 118,111,105,100
+.b8 5
+.b8 52
+.b32 4952
 .b8 0
-.b8 19
-.b32 4827
-.b32 12
-.b8 19
-.b32 4812
-.b32 12
-.b8 19
-.b32 4845
-.b32 12
-.b8 6
-.b8 102,108,111,97,116
-.b8 0
-.b8 4
-.b8 4
 .b8 6
 .b8 105,110,116
 .b8 0
 .b8 5
 .b8 4
-.b8 19
-.b32 4870
-.b32 12
 .b8 6
-.b8 100,111,117,98,108,101
+.b8 117,110,115,105,103,110,101,100,32,105,110,116
+.b8 0
+.b8 7
+.b8 4
+.b8 6
+.b8 102,108,111,97,116
 .b8 0
 .b8 4
-.b8 8
-.b8 20
+.b8 4
+.b8 14
+.b8 118,111,105,100
+.b8 0
+.b8 15
+.b32 4925
+.b32 12
+.b8 15
+.b32 4910
+.b32 12
+.b8 15
+.b32 4878
+.b32 12
+.b8 15
 .b32 4885
-.b8 19
-.b32 3970
+.b32 12
+.b8 15
+.b32 4901
 .b32 12
 .b8 0
 	}

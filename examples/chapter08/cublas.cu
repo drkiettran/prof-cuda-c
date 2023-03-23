@@ -13,8 +13,8 @@
  * M = # of rows
  * N = # of columns
  */
-int M = 1024;
-int N = 1024;
+int M = 128;
+int N = 128;
 
 /*
  * Generate a vector of length N with random single-precision floating-point
