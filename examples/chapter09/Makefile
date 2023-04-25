@@ -21,7 +21,7 @@ simpleP2P_CUDA_Aware: simpleP2P_CUDA_Aware.o
 
 %: %.cu
 #	nvcc -O2 -arch=sm_20 -I${MPI_HOME}/include -o $@ $<
-	nvcc -g -G -arch=sm_80 -I${MPI_HOME}/include -o $@ $<
+	nvcc -g -G -I${MPI_HOME}/include -o $@ $<
 %: %.c
 #	gcc -O2 -std=c99 -I${MPI_HOME}/include -o $@ $<
 	gcc -g -std=c99 -I${MPI_HOME}/include -o $@ $<
