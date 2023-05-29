@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 int main() {
-    char *this_course = "15213";
+    char *this_course = "cisc701";
     char bad[3] = { 'b', 'a', 'd' };
     char *zero = "0";
 

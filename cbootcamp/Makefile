@@ -1,16 +1,30 @@
 CC = gcc
-CFLAGS = -g -Wall -Wextra -Werror -std=gnu99
+#CFLAGS = -g -Wall -Wextra -Werror -std=gnu99
+CFLAGS = -g
 
-all: queue ref-queue passing_args pointer_arith mem_mgmt structs macros typedefs casting cstdlib
+APPS = queue ref-queue passing_args pointer_arith mem_mgmt structs macros typedefs casting cstdlib file2 static structs_2
 
+
+
+file2: file1.c file2.c
+	$(CC) -c -o file1.o file1.c
+	$(CC) -c -o file2.o file2.c
+	$(CC) -o file2 file1.o file2.o
+
+static:
+	$(CC) $(CFLAGS) -o static static.c
+	
 structs:
-	$(CC) -o structs structs.c 
+	$(CC) $(CFLAGS) -o structs structs.c 
+
+structs_2:
+	$(CC) $(CFLAGS) -o structs_2 structs_2.c 
 
 macros:
-	$(CC) -o ./extras/macros ./extras/macros.c 
+	$(CC) $(CFLAGS) -o ./extras/macros ./extras/macros.c 
 
 typedefs:
-	$(CC) -o ./extras/typedefs ./extras/typedefs.c 
+	$(CC) $(CFLAGS) -o ./extras/typedefs ./extras/typedefs.c 
 
 casting: ./extras/casting.c
 	$(CC) $(CFLAGS) -o ./extras/casting ./extras/casting.c
@@ -38,5 +52,9 @@ cstdlib: atoi.c files.c getopt.c strcat.c strlen.c strcpy.c
 	$(CC) $(CFLAGS) -o strlen strlen.c
 	$(CC) $(CFLAGS) -o strcpy strcpy.c
 
+all: ${APPS}
+
 clean:
-	rm ./extras/student_queue_test ./extras/ref_queue_test ./extras/passing_args pointer_arith mem_mgmt structs ./extras/macros ./extras/typedefs ./extras/casting atoi files getopt strcat strlen strcpy
+	rm -f ${APPS}
+
+#	rm ./extras/student_queue_test ./extras/ref_queue_test ./extras/passing_args pointer_arith mem_mgmt structs ./extras/macros ./extras/typedefs ./extras/casting atoi files getopt strcat strlen strcpy

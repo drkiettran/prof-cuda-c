@@ -11,7 +11,10 @@ int main(int argc, char **argv)
 {
     // define total data element
     int nElem = 1024;
-
+    if (argc > 1) {
+        nElem = atoi(argv[1]);
+    }
+    
     // define grid and block structure
     dim3 block (1024);
     dim3 grid  ((nElem + block.x - 1) / block.x);
