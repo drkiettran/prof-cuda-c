@@ -3,7 +3,7 @@
 #include <unistd.h> 
 #include <pthread.h>
 
-//
+// 
 // to compile & run:
 // gcc -pthread -g -o mthreads_v2 mthreads_v2.c
 // ./mthreads_v2
