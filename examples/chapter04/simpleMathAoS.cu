@@ -10,7 +10,7 @@
  * AoS: one contiguous 64-bit read to get x and y (up to 300 cycles)
  */
 
-#define LEN 1<<22
+#define LEN 1<<26
 
 struct innerStruct
 {

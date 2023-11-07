@@ -13,7 +13,8 @@ __global__ void helloFromGPU()
 
 int main(int argc, char **argv)
 {
-    printf("Hello World from CPU!\n");
+    const char *hello_msg = "Hello World from CPU!\n";
+    printf("%s", hello_msg);
 
     helloFromGPU<<<1, 10>>>();
     CHECK(cudaDeviceReset());

@@ -8,8 +8,8 @@
             "name": "CUDA C++: Launch",
             "type": "cuda-gdb",
             "request": "launch",
-            "program": "${workspaceFolder}/checkDimension",
-            "args": ["12"]
+            "program": "${workspaceFolder}/sumMatrixOnGPU-2D-grid-2D-block",
+            "args": 
         },
         {
             "name": "CUDA C++: Launch",

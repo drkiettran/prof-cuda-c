@@ -10,7 +10,7 @@
  * SoA: contiguous reads for x and y
  */
 
-#define LEN 1<<22
+#define LEN 1<<26
 
 struct InnerArray
 {

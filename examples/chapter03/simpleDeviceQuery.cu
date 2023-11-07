@@ -10,7 +10,15 @@
 
 int main(int argc, char *argv[])
 {
-    int iDev = 0;
+    int iDev;
+
+    if (argc < 2) {
+       printf("\n**run**: %s device_number\n", argv[0]);
+       return -1;
+    } else {
+       iDev = atoi(argv[1]);
+    }
+    
     cudaDeviceProp iProp;
     CHECK(cudaGetDeviceProperties(&iProp, iDev));
 

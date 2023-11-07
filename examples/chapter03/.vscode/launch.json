@@ -14,7 +14,7 @@
             "name": "CUDA C++: Launch",
             "type": "cuda-gdb",
             "request": "launch",
-            "program": "${workspaceFolder}/simpleDivergence"
+            "program": "${workspaceFolder}/sumMatrix"
         },
         {
             "name": "CUDA C++: Attach",

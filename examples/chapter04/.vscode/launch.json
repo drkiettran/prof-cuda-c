@@ -20,7 +20,7 @@
             "name": "CUDA C++: Launch",
             "type": "cuda-gdb",
             "request": "launch",
-            "program": "${workspaceFolder}/memTransfer"
+            "program": "${workspaceFolder}/simpleMathAoS"
 
         },
         {

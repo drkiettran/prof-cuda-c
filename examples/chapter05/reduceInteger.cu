@@ -413,7 +413,8 @@ int main(int argc, char **argv)
     bool bResult = false;
 
     // initialization
-    int size = 1 << 24; // total number of elements to reduce
+    int size = 1 << 24; //24; // total number of elements to reduce
+    
     printf("    with array size %d  ", size);
 
     // execution configuration
@@ -430,8 +431,10 @@ int main(int argc, char **argv)
     int *tmp     = (int *) malloc(bytes);
 
     // initialize the array
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < size; i++) {
         h_idata[i] = (int)( rand() & 0xFF );
+        // h_idata[i] = i;
+    }
 
     memcpy (tmp, h_idata, bytes);
 
