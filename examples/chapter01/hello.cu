@@ -6,6 +6,8 @@
  * World from GPU! from 10 CUDA threads running on the GPU.
  */
 
+/**/
+
 __global__ void helloFromGPU()
 {
     printf("Hello World from GPU!\n");
